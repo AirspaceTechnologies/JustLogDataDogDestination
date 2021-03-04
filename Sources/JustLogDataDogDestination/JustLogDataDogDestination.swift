@@ -5,9 +5,9 @@ import JustLog
 
 public struct JustLogDataDogDestination: CustomDestinationSender {
 
-    static let dataDogLoggerVersion = "1.4.1"
+    public static let dataDogLoggerVersion = "1.4.1"
     
-    enum DataDogEndpoint {
+    public enum DataDogEndpoint {
         case us
         case eu
         case gov
