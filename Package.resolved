@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "JustLog",
+        "repositoryURL": "https://github.com/justeat/JustLog.git",
+        "state": {
+          "branch": null,
+          "revision": "83dd6ea3c8b00f2b3f32171bb7a2d577c0a7d7e3",
+          "version": "3.2.1"
+        }
+      },
+      {
+        "package": "SwiftyBeaver",
+        "repositoryURL": "https://github.com/SwiftyBeaver/SwiftyBeaver",
+        "state": {
+          "branch": null,
+          "revision": "2c513a2e8fbfbd6495afc4a05941d8e3fdba68e9",
+          "version": "1.9.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
