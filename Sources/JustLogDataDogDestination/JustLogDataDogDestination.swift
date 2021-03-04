@@ -31,7 +31,7 @@ public struct JustLogDataDogDestination: CustomDestinationSender {
     public weak var logger: JustLog.Logger?
     
     public init(clientToken: String, endpoint: DataDogEndpoint,
-                            loggerName: String, urlSession: URLSession? = .shared, logger: JustLog.Logger? = nil) {
+                            loggerName: String, urlSession: URLSession = .shared, logger: JustLog.Logger? = nil) {
         self.clientToken = clientToken
         self.endpoint = endpoint
         self.loggerName = loggerName
