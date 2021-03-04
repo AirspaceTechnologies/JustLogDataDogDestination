@@ -23,15 +23,15 @@ public struct JustLogDataDogDestination: CustomDestinationSender {
         }
     }
     
-    let clientToken: String
-    let endpoint: DataDogEndpoint
-    let urlSession: URLSession = .shared
-    let loggerName: String
-    weak var logger: JustLog.Logger?
+    public let clientToken: String
+    public let endpoint: DataDogEndpoint
+    public let urlSession: URLSession = .shared
+    public let loggerName: String
+    public weak var logger: JustLog.Logger?
     
     private let encoder = JSONEncoder()
     
-    func log(_ string: String) {
+    public func log(_ string: String) {
         do {
             guard let jsonPart = getJSONPart(string) else { return }
             guard let data = jsonPart.data(using: .utf8) else { return }
