@@ -3,7 +3,7 @@ import os
 import Foundation
 import JustLog
 
-struct JustLogDataDogDestination: CustomDestinationSender {
+public struct JustLogDataDogDestination: CustomDestinationSender {
 
     static let dataDogLoggerVersion = "1.4.1"
     
