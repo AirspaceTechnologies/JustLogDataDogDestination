@@ -52,6 +52,13 @@ public struct JustLogDataDogDestination: CustomDestinationSender {
         
         /// To provide a custom endpoint; suitable for use with mitmproxy to inspect traffic.
         case custom(_ urlString: String)
+        
+        /// A helper constructor that attempts to create a `.custom` endpoing from the given url string.
+        static func tryCustom(_ urlString: String?) -> Self? {
+            guard let urlString = urlString else { return nil }
+            guard let url = URL(string: urlString) else { return nil }
+            return .custom(url.absoluteString)
+        }
 
         /// The URL object, it will crash if `.custom(_:)` is provided with and invalid URL.
         var url: URL {
