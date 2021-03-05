@@ -120,7 +120,7 @@ public struct JustLogLogParser {
     
     let justLogTimeParser: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "H:mm:s.sss"
+        formatter.dateFormat = "hh:mm:s.sss"
         return formatter
     }()
     
