@@ -130,7 +130,16 @@ public struct JustLogLogParser {
         }
         
         if let time = justLogTimeParser.date(from: getDatePart(string, spaceCount: 1)) {
-            return time
+            let cal = Calendar.current
+            let dateParts: Set<Calendar.Component> = Set([.year, .month, .day, .hour, .minute, .second])
+
+            let curDate = cal.dateComponents(dateParts, from: Date())
+            var comps = cal.dateComponents(dateParts, from: time)
+            comps.setValue(curDate.year, for: .year)
+            comps.setValue(curDate.month, for: .month)
+            comps.setValue(curDate.day, for: .day)
+
+            return cal.date(from: comps)!
         }
         
         return nil
