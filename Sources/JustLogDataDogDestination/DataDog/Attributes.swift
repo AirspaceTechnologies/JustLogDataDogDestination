@@ -61,3 +61,10 @@ public typealias AttributeKey = String
 /// defined as sum of key levels and value levels exceeds 10, the data may not be delivered.
 ///
 public typealias AttributeValue = Encodable
+
+internal struct LogAttributes {
+    /// Log attributes received from the user. They are subject for sanitization.
+    let userAttributes: [String: Encodable]
+    /// Log attributes added internally by the SDK. They are not a subject for sanitization.
+    let internalAttributes: [String: Encodable]?
+}

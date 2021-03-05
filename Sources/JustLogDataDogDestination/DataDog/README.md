@@ -5,12 +5,10 @@ here:
 
   * https://github.com/DataDog/dd-sdk-ios/releases/tag/1.4.1
   
-  
-The classes are used to encode the log objects it specifically leaves out the following information by hardcoding or 
-masking out:
+The classes are used to encode the log objects, it specifically leaves out the following information by hardcoding or 
+commenting out:
 
   * Carrier Network Info
   * Reachibility Network Information
   * Any RUM properties
   * Span or Spannable properties
-
