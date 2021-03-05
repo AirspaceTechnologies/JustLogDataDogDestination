@@ -74,6 +74,7 @@ public struct JustLogDataDogDestination: CustomDestinationSender {
     /// The name of the logger, DataDog's SDK usually sends the applications `bundle ID`.
     public let loggerName: String
     
+    /// An `URLSession` instance that allows you to customize upload behaviour.
     public let urlSession: URLSession
     
     /// An optional `JustLog.Logger` instance that can be used to extract additional configuration.
@@ -228,12 +229,18 @@ public struct JustLogDataDogDestination: CustomDestinationSender {
         }
     }
     
+    #if os(tvOS)
+    static let ddSource = "tvos"
+    #elseif os(iOS)
+    static let ddSource = "ios"
+    #endif
+    
     /// Sends the log using the `urlSession`
     private func sendLog(_ log: Log) throws {
         var url = URLComponents(string: endpoint.url.absoluteString + clientToken)!
         
         url.queryItems = [
-            .init(name: "ddsource", value: "ios"),
+            .init(name: "ddsource", value: Self.ddSource),
             .init(name: "batch_time", value: String(describing: Int(Date().timeIntervalSince1970)))
         ]
 
