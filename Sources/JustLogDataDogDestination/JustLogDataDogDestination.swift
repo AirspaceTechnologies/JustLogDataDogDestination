@@ -263,7 +263,7 @@ public struct JustLogDataDogDestination: CustomDestinationSender {
             }
             
             if let response = response {
-                os_log("Response: %@", type: .info, String(data: data, encoding: .utf8)!)
+                os_log("Response: %@", type: .info, String(describing: response))
             }
         }.resume()
     }
