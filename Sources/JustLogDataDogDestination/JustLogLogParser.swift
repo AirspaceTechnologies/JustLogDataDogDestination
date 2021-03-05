@@ -7,8 +7,16 @@
 
 import Foundation
 
-typealias DDLog = Log
+/// Alias to avoid type conflicts with `DDLog` and `Log` types.
+typealias JLDDLog = Log
 
+/**
+ A class that parses `JustLog` string logs.
+ 
+ ```
+ 
+ ```
+ */
 public struct JustLogLogParser {
     
     public enum Error: Swift.Error {
@@ -24,7 +32,7 @@ public struct JustLogLogParser {
     
     public struct Log {
         var date: Date
-        var status: DDLog.Status
+        var status: JLDDLog.Status
         var serviceName: String
         var environment: String
         var appVersion: String
@@ -36,11 +44,13 @@ public struct JustLogLogParser {
 
     let options: Options?
     
+    /// Create a parser and parse the given string.
     public static func parse(_ string: String, options: Options? = nil) throws -> Log {
         let parser = Self(options: options)
         return try parser.parse(string)
     }
 
+    /// Parse the given string.
     public func parse(_ string: String) throws -> Log {
         guard let date = justLogDateParser.date(from: getLogDate(string)) else {
             throw Error.missingDate(string)
@@ -158,7 +168,7 @@ public struct JustLogLogParser {
     }
 
     /// Converts a `JustLog` string log type to DataDog's `Log.Status`. Defaults to `.debug`.
-    private func logStatus(forLogType logType: String?) -> DDLog.Status {
+    private func logStatus(forLogType logType: String?) -> JLDDLog.Status {
         switch logType {
         case "info": return .info
         case "debug": return .debug

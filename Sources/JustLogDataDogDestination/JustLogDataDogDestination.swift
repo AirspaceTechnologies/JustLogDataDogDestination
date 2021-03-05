@@ -54,14 +54,14 @@ public struct JustLogDataDogDestination: CustomDestinationSender {
         case custom(_ urlString: String)
         
         /// A helper constructor that attempts to create a `.custom` endpoing from the given url string.
-        static func tryCustom(_ urlString: String?) -> Self? {
+        public static func tryCustom(_ urlString: String?) -> Self? {
             guard let urlString = urlString else { return nil }
             guard let url = URL(string: urlString) else { return nil }
             return .custom(url.absoluteString)
         }
 
         /// The URL object, it will crash if `.custom(_:)` is provided with and invalid URL.
-        var url: URL {
+        public var url: URL {
             switch self {
             case .us: return URL(string: "https://mobile-http-intake.logs.datadoghq.com/v1/input/")!
             case .eu: return URL(string: "https://mobile-http-intake.logs.datadoghq.eu/v1/input/")!
