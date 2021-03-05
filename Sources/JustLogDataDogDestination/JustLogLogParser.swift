@@ -52,7 +52,7 @@ public struct JustLogLogParser {
 
     /// Parse the given string.
     public func parse(_ string: String) throws -> Log {
-        guard let date = justLogDateParser.date(from: getLogDate(string)) else {
+        guard let date = parseDate(string) else {
             throw Error.missingDate(string)
         }
 
@@ -103,20 +103,38 @@ public struct JustLogLogParser {
     }
     
     /// Parse the `JustLog` formatted date, if it cannot be parsed an empty string is returned.
-    private func getLogDate(_ string: String) -> String {
+    private func getDatePart(_ string: String, spaceCount: Int) -> String {
         let parts = string.split(separator: " ")
-        if parts.count < 2 {
+        if parts.count < spaceCount {
             return ""
         }
 
-        return parts[0..<2].joined(separator: " ")
+        return parts[0..<spaceCount].joined(separator: " ")
     }
-    
+
     let justLogDateParser: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "y-MM-dd H:mm:s.sss"
+        formatter.dateFormat = "yyyy-MM-dd H:mm:s.sss"
         return formatter
     }()
+    
+    let justLogTimeParser: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "H:mm:s.sss"
+        return formatter
+    }()
+    
+    private func parseDate(_ string: String) -> Date? {
+        if let date = justLogDateParser.date(from: getDatePart(string, spaceCount: 2)) {
+            return date
+        }
+        
+        if let time = justLogTimeParser.date(from: getDatePart(string, spaceCount: 1)) {
+            return time
+        }
+        
+        return nil
+    }
 
     private func logAttributes(_ metadata: [String : Any], _ userInfo: [String : Any]) -> LogAttributes {
         var userAttributes = [AttributeKey : AttributeValue]()
