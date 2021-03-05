@@ -6,7 +6,7 @@ import JustLog
 final class JustLogDataDogDestinationTests: XCTestCase {
     func test_force_send() {
         let sender = JustLogDataDogDestination(
-            clientToken: "pub7100613f185abd9cc3f41c458bb98cc2",
+            clientToken: "secr3t",
             endpoint: .custom("http://192.168.0.111:8080/v1/input/"),
             urlSession: .shared,
             loggerName: self.name
